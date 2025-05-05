@@ -131,21 +131,15 @@ else
 fi
 
 echo -e "\n${CYAN}${BOLD}---- MENJALANKAN NODE AZTEC ----${RESET}\n"
-cat > $HOME/start_aztec_node.sh << EOL
-#!/bin/bash
-export PATH=\$PATH:\$HOME/.aztec/bin
-aztec start --node --archiver --sequencer \\
-  --network alpha-testnet \\
-  --port 8080 \\
-  --l1-rpc-urls $L1_RPC_URL \\
-  --l1-consensus-host-urls $L1_CONSENSUS_URL \\
-  --sequencer.validatorPrivateKey $VALIDATOR_PRIVATE_KEY \\
-  --sequencer.coinbase $COINBASE_ADDRESS \\
-  --p2p.p2pIp $IP \\
+export PATH=$PATH:$HOME/.aztec/bin
+aztec start --node --archiver --sequencer \
+  --network alpha-testnet \
+  --port 8080 \
+  --l1-rpc-urls $L1_RPC_URL \
+  --l1-consensus-host-urls $L1_CONSENSUS_URL \
+  --sequencer.validatorPrivateKey $VALIDATOR_PRIVATE_KEY \
+  --sequencer.coinbase $COINBASE_ADDRESS \
+  --p2p.p2pIp $IP \
   --p2p.maxTxPoolSize 1000000000
-EOL
 
-chmod +x $HOME/start_aztec_node.sh
-screen -dmS aztec $HOME/start_aztec_node.sh
-
-echo -e "${GREEN}${BOLD}Node Aztec berhasil dijalankan di dalam session screen.${RESET}\n"
+echo -e "${GREEN}${BOLD}Node Aztec berhasil dijalankan langsung di terminal.${RESET}\n"
